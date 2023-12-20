@@ -1,0 +1,39 @@
+<!-- views/realTimeProducts.handlebars -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Time Products</title>
+</head>
+<body>
+    <h1>Listado de Productos (Real Time)</h1>
+    <!-- Renderizar la lista de productos aquí -->
+    
+    <!-- Formulario para agregar/eliminar productos -->
+    <!-- Este formulario se enviará a través de WebSockets -->
+    <form id="productForm">
+        <input type="text" name="productName" placeholder="Nombre del producto" required>
+        <button type="submit">Agregar Producto</button>
+    </form>
+
+    <!-- Scripts para manejar WebSockets -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        // Lógica para manejar la actualización en tiempo real
+        // Puedes implementar la lógica aquí
+
+        // Lógica para manejar el formulario
+        const productForm = document.getElementById('productForm');
+        productForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const productName = event.target.productName.value;
+
+            // Enviar el nombre del producto a través de WebSockets
+            socket.emit('addProduct', { productName });
+        });
+    </script>
+</body>
+</html>
